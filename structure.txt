@@ -1,0 +1,21 @@
+art-command-center/
+
+backend/
+
+├── app/
+│   ├── database/
+│   │   └── connection.py
+│   │
+│   ├── models.py
+│   ├── schemas.py
+│   ├── crud.py
+│   │
+│   ├── routes/
+│   │   └── artworks.py
+│   │
+│   └── main.py
+│
+├── data/
+│   └── art_command_center.db
+│
+└── requirements.txt

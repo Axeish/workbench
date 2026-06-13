@@ -1,0 +1,249 @@
+Workbench Project Summary (June 2026)
+Goal
+Create a personal Art Workbench application to manage:
+Axeishguy
+Cornoddity
+while maintaining focus and preventing idea overload.
+Primary goals:
+
+See current priorities immediately
+Limit active work
+Track progress on larger art projects
+Keep old ideas/artwork without losing them
+Track monthly obligations (Patreon, Mail Club, Vendor prep)
+Support multiple artists (Ashish, Josh, future artists)
+Show achievements and progress over time
+Core Design Decision
+We decided:
+❌ Not a generic life planner
+
+❌ Not a tech/career planner
+
+❌ Not a giant productivity app
+
+✅ Art Production Studio Manager
+
+Important Hierarchy
+Brands and Artists are different things.
+Brand
+Axeishguy
+Projects:
+
+Gay Zodiac
+Tarot
+Loteria
+Playing Cards
+Leather Collection
+Cornoddity
+Projects:
+
+Hippo Collection
+D&D Collection
+Seasonal Collection
+Zodiac Hippos
+Artist
+Ashish
+Josh
+
+Future collaborators
+
+Artwork
+Each artwork belongs to:
+Brand
+Project
+Artist
+Example:
+{
+  "title": "Aries Scholar",
+  "brand": "Axeishguy",
+  "project": "Gay Zodiac",
+  "artist": "Ashish",
+  "status": "ACTIVE"
+}
+MVP Design
+Version 1 should be VERY small.
+Only:
+
+Active Work
+Per artist:
+Maximum 5 active items.
+
+Example:
+
+ASHISH
+
+Aries Scholar
+Hippo Wizard
+Patreon Sketch
+Vendor Banner
+Taurus Rider
+
+JOSH
+
+Pirate Hippo
+Mushroom House
+Rule:
+Maximum 5 ACTIVE items per artist.
+
+Must finish, archive, or move back to pool before adding more.
+
+Project Progress
+Example:
+Axeishguy
+
+Gay Zodiac
+3 Done
+2 Active
+7 Pool
+
+Tarot
+5 Done
+1 Active
+72 Pool
+
+Cornoddity
+
+Hippo Collection
+12 Done
+3 Active
+25 Pool
+Monthly Tasks
+Separate from artwork.
+Examples:
+
+June Patreon
+
+□ Sketch
+□ Wallpaper
+□ Poll
+
+June Mail Club
+
+□ Sticker
+□ Story
+□ Print
+Monthly tasks are obligations, not artworks.
+Future Features (Not MVP)
+Do NOT build yet:
+Social media scheduler
+Analytics
+Achievement statistics
+Vendor inventory
+Email planner
+Content calendar
+Notifications
+Build later.
+Data Model (Current MVP)
+Artist
+id
+name
+Artwork
+id
+title
+
+brand_id
+project_id
+artist_id
+
+status
+
+notes
+Statuses:
+POOL
+ACTIVE
+DONE
+ARCHIVED
+Planned Tables
+Eventually:
+artists
+artworks
+brands
+projects
+monthly_tasks
+monthly_task_items
+Only six tables.
+Project Structure
+Chosen name:
+workbench
+Folder Structure
+workbench/
+
+├── .gitignore
+├── README.md
+├── venv/
+
+├── workbench_backend/
+│
+│   ├── app/
+│   │
+│   │   ├── database/
+│   │   │   ├── __init__.py
+│   │   │   └── connection.py
+│   │   │
+│   │   ├── routes/
+│   │   │   ├── __init__.py
+│   │   │   └── artworks.py
+│   │   │
+│   │   ├── __init__.py
+│   │   ├── main.py
+│   │   ├── models.py
+│   │   ├── schemas.py
+│   │   └── crud.py
+│   │
+│   └── data/
+│       └── workbench.db
+│
+└── workbench_frontend/
+    │
+    ├── src/
+    │
+    ├── pages/
+    │   └── Dashboard.tsx
+    │
+    ├── components/
+    │   ├── ActiveQueue.tsx
+    │   └── ArtworkCard.tsx
+    │
+    ├── services/
+    │   └── artworks.ts
+    │
+    └── package.json
+Virtual Environment Decision
+Keep existing venv.
+Current choice:
+
+workbench/
+├── venv/
+├── workbench_backend/
+└── workbench_frontend/
+Do NOT create another venv.
+Activate from root:
+
+cd workbench
+source venv/bin/activate
+Database Location Decision
+Chosen:
+workbench_backend/data/workbench.db
+Database belongs to backend.
+First Milestone
+Do not build everything.
+Goal:
+
+FastAPI running
+SQLite running
+Artist model
+Artwork model
+Create artwork API
+Display active artworks on dashboard
+Only after this works:
+Brands
+Projects
+Monthly tasks
+Current State
+User has already:
+Created workbench
+Created top-level venv
+Chosen database option A:
+workbench_backend/data/workbench.db
+Next session should continue from:
+Create backend files and FastAPI setup using the Workbench structure above, then create Artist and Artwork models and first CRUD endpoints.
