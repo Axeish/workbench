@@ -7,7 +7,7 @@ app = FastAPI(
     title="Workbench"
 )
 
-app.include_router(artwork_router)
+
 init_db()
 
 
